@@ -8,35 +8,40 @@
                         <button type="button" data-bs-target="#slideshow" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
                         <button type="button" data-bs-target="#slideshow" data-bs-slide-to="1" aria-label="Slide 2"></button>
                         <button type="button" data-bs-target="#slideshow" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                        <button type="button" data-bs-target="#slideshow" data-bs-slide-to="2" aria-label="Slide 4"></button>
                     </div>
                     <div class="carousel-inner" id="carouselInner">
                         <div class="carousel-item active">
                             <a href="../website/list.php">
-                                <div class="position-relative">
-                                    <img src="{{ asset('images/dau-la-dai-luc-poster.jpg') }}" class="d-block w-100" alt="Đấu La Đại Lục">
-                                    <div class="carousel-caption d-none d-md-block">
-                                        <h5>Đấu La Đại Lục</h5>
-                                    </div>
+                                <img src="{{ asset('images/dau-la-dai-luc-poster.jpg') }}" class="d-block w-100" alt="Đấu La Đại Lục">
+                                <div class="carousel-caption d-none d-md-block">
+                                    <h5>Đấu La Đại Lục</h5>
                                 </div>
                             </a>
                         </div>
                         <div class="carousel-item">
                             <a href="../website/list.php">
-                                <div class="position-relative">
-                                    <img src="{{ asset('images/hoa-giang-ho-chi-bat-luong-nhan-phan-6-2-1.jpg') }}" class="d-block w-100" alt="Hoa Giang Hồ">
-                                    <div class="carousel-caption d-none d-md-block">
-                                        <h5>Hoa Giang Hồ</h5>
-                                    </div>
+                                <img src="{{ asset('images/hoa-giang-ho-chi-bat-luong-nhan-phan-6-2-1.jpg') }}" class="d-block w-100" alt="Hoa Giang Hồ">
+                                <div class="carousel-caption d-none d-md-block">
+                                    <h5>Hoa Giang Hồ</h5>
                                 </div>
                             </a>
                         </div>
+
                         <div class="carousel-item">
                             <a href="../website/list.php">
-                                <div class="position-relative">
-                                    <img src="{{ asset('images/thuong-nguyen-dp.jpg') }}" class="d-block w-100" alt="Thương Nguyên">
-                                    <div class="carousel-caption d-none d-md-block">
-                                        <h5>Thương Nguyên</h5>
-                                    </div>
+                                <img src="{{ asset('images/gia-thien-poster-1.jpg') }}" class="d-block w-100" alt="gia-thien">
+                                <div class="carousel-caption d-none d-md-block">
+                                    <h5>gia-thien</h5>
+                                </div>
+                            </a>
+                        </div>
+
+                        <div class="carousel-item">
+                            <a href="../website/list.php">
+                                <img src="{{ asset('images/thuong-nguyen-dp.jpg') }}" class="d-block w-100" alt="Thương Nguyên">
+                                <div class="carousel-caption d-none d-md-block">
+                                    <h5>Thương Nguyên</h5>
                                 </div>
                             </a>
                         </div>
@@ -69,15 +74,35 @@
     </script>
 
     <style>
+        .carousel-item {
+            height: 400px; /* Chiều cao cố định cho mỗi slide */
+            overflow: hidden; /* Giấu bất cứ phần nào của hình ảnh không nằm trong khung */
+        }
+
+        .carousel-item img {
+            max-height: 100%; /* Giới hạn chiều cao hình ảnh chiếm đầy container */
+            width: auto; /* Giữ chiều rộng tự động để giữ tỷ lệ */
+            position: absolute; /* Đặt ảnh ở vị trí tuyệt đối */
+            top: 50%; /* Đặt ở giữa chiều dọc */
+            left: 50%; /* Đặt ở giữa chiềuleft: 50%; /* Đặt ở giữa chiều ngang */
+            transform: translate(-50%, -50%); /* Điều chỉnh vị trí trung tâm của ảnh */
+            object-fit: contain; /* Giữ nguyên tỷ lệ hình ảnh mà không bị cắt */
+        }
+
+        .carousel-inner {
+            position: relative; /* Đảm bảo carousel-inner không làm các items chồng lên nhau */
+        }
+
         .carousel-caption {
             position: absolute;
-            bottom: 20px; /* Position the caption at the bottom */
-            left: 50%; /* Center horizontally */
-            transform: translateX(-50%); /* Adjust for the center */
-            color: white; /* Change text color for better visibility */
-            text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.7); /* Add shadow for readability */
+            bottom: 10px; /* Đặt caption ở dưới cùng */
+            left: 50%; /* Căn giữa theo chiều ngang */
+            transform: translateX(-50%); /* Điều chỉnh cho đúng vị trí giữa */
+            color: white; /* Đổi màu chữ để dễ đọc */
+            text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.7); /* Thêm bóng đổ cho chữ */
         }
     </style>
 
 </body>
 </html>
+
