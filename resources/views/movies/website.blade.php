@@ -22,6 +22,7 @@
     background: #1c1c1c !important;
     color: #d0d0d0; /* Ensure links in footer credit are light gray */
 }
+
 </style>
 </head>
 <body>
@@ -30,6 +31,8 @@
     @include('source.navbar')
 
     @include('source.slide')
+
+    @include('source.time_contents')
 
     @include('source.contents')
 

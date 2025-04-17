@@ -1,379 +1,416 @@
 <style>
+ /* CSS cho giao diện hiển thị tên phim vào trong ảnh */
 
-  nav {
-    background-color: #333 !important; /* Màu nền tối cho navbar */
+/* Reset cơ bản để đảm bảo tính nhất quán */
+body, h1, h2, h3, p, ul, li, figure, figcaption {
+    margin: 0;
+    padding: 0;
+    list-style: none;
 }
 
-nav .container {
-    padding: 10px 20px; /* Padding cho container */
+body {
+    font-family: sans-serif; /* Chọn font chữ phù hợp */
+    background-color: #f4f4f4; /* Màu nền trang */
+    color: #333; /* Màu chữ mặc định */
+    line-height: 1.6;
 }
 
-nav ul {
-    list-style: none; /* Gỡ bỏ dấu chấm mặc định */
-    padding: 0; /* Gỡ bỏ padding */
-    margin: 0; /* Gỡ bỏ margin */
-    display: flex; /* Sử dụng flexbox cho layout */
-    justify-content: space-around; /* Căn giữa các mục trong navbar */
+.container {
+    max-width: 1300px; /* Độ rộng tối đa của container */
+    margin: 20px auto; /* Căn giữa container */
+    padding: 0 20px; /* Padding hai bên container */
 }
 
-nav .nav-item {
-    flex: 1; /* Chiếm đều không gian */
-    text-align: center; /* Căn giữa text trong từng mục */
-}
 
-nav .nav-link {
-    display: block; /* Hiển thị như block */
-    padding: 15px; /* Padding cho các liên kết */
-    color: #fff; /* Màu chữ trắng */
-    text-decoration: none; /* Gỡ bỏ gạch chân */
-    transition: background-color 0.3s ease, color 0.3s ease; /* Hiệu ứng chuyển màu nền và chữ */
-    position: relative; /* Để sử dụng cho hiệu ứng border */
-}
 
-nav .nav-link .font-semibold {
-    font-weight: 600; /* Áp dụng font-weight cho chữ in đậm */
-}
 
-nav .nav-link.active,
-nav .nav-link:hover {
-    background-color: #444; /* Màu nền khi hover hoặc active */
-    color: #3b82f6; /* Thay đổi màu chữ khi active */
-}
 
-/* Đường kẻ dưới cho item active */
-nav .nav-link:after {
-    content: '';
-    display: block;
-    width: 100%;
-    height: 2px;
-    background-color: #3b82f6; /* Màu đường kẻ dưới */
-    position: absolute;
-    bottom: 0; /* Đặt đường kẻ ở dưới cùng */
-    left: 0;
-    right: 0;
-    opacity: 0; /* Bắt đầu với đường kẻ ẩn */
-    transition: opacity 0.3s ease; /* Hiệu ứng chuyển đổi cho đường kẻ */
-}
-
-nav .nav-link:hover:after,
-nav .nav-link.active:after {
-    opacity: 1; /* Hiện đường kẻ khi hover hoặc active */
-}
-    .section-title {
-    margin: 20px 0; /* Tạo khoảng cách trên và dưới cho tiêu đề */
+/* Tiêu đề Section */
+.section-title {
+    margin-bottom: 20px;
+    text-align: center;
 }
 
 .section-title span {
-    font-size: 2rem; /* Kích thước chữ lớn hơn */
-    font-weight: bold; /* Chữ đậm */
-    letter-spacing: 1px; /* Khoảng cách giữa các ký tự */
-    text-transform: uppercase; /* Viết hoa tất cả các chữ cái */
-    background: linear-gradient(to right, #ff8a00, #ff2070); /* Gradient màu cam */
-    -webkit-background-clip: text; /* Clip background cho chữ */
-    -webkit-text-fill-color: transparent; /* Màu chữ trong suốt */
-    display: inline-block; /* Để áp dụng padding hoặc margin nếu cần */
-    padding: 5px 0; /* Thêm không gian xung quanh chữ */
-    text-align: center; /* Căn giữa văn bản */
-    border-bottom: 3px solid #ff2070; /* Dòng kẻ dưới chân màu cam */
-    margin-bottom: 10px; /* Khoảng cách giữa dòng kẻ và nội dung phía dưới */
+    font-size: 2rem;
+    font-weight: bold;
+    color: #e44d26; /* Màu tiêu đề */
+    display: inline-block;
+    padding-bottom: 5px;
+    border-bottom: 3px solid #e44d26;
+}
+
+/* Grid hiển thị phim */
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Tạo layout grid responsive */
+    gap: 20px; /* Khoảng cách giữa các item */
+}
+
+.grid-item {
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+}
+
+.halim-item {
+    position: relative;
+    display: block;
+}
+
+.halim-thumb {
+    position: relative;
+    display: block;
+    overflow: hidden;
+}
+
+.halim-thumb figure {
+    margin: 0;
+    overflow: hidden;
+}
+
+.halim-thumb img.img-responsive {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    display: block;
+    border-radius: 8px;
+    transition: transform 0.3s ease;
+}
+
+.halim-thumb:hover img.img-responsive {
+    transform: scale(1.05);
+}
+
+.halim-post-title-box {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    color: #fff;
+    padding: 10px;
+    box-sizing: border-box;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.halim-thumb:hover .halim-post-title-box {
+    opacity: 1;
+}
+
+.halim-post-title {
+    text-align: left;
+}
+
+.halim-post-title .entry-title {
+    font-size: 1rem;
+    margin-bottom: 3px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.halim-post-title .original_title {
+    font-size: 0.8rem;
+    color: #ccc;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.icon_overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.3);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: 1;
+    border-radius: 8px;
+}
+
+.halim-thumb:hover .icon_overlay {
+    opacity: 1;
+}
+
+.episode {
+    position: absolute;
+    top: 8px;
+    left: 8px;
+    background: linear-gradient(to right, #C02425, #F0CB35, #C02425);
+    color: white;
+    padding: 3px 7px;
+    font-size: 0.75rem;
+    border-radius: 4px;
+    font-weight: bold;
+    z-index: 2;
+}
+
+.grid-item .episode {
+    left: 8px !important;
+    top: 8px !important;
+    right: unset !important;
+    bottom: unset !important;
+}
+
+/* Phân trang */
+.page-numbers {
+    padding: 0;
+    margin: 20px 0;
+    color: #333;
+    list-style: none;
+    text-align: center;
+}
+
+.page-numbers li {
+    line-height: 35px;
+    display: inline-block;
+    margin: 0 5px;
+}
+
+.page-numbers li a,
+.page-numbers li span {
+    background: #ddd;
+    color: #333;
+    text-shadow: none;
+    box-shadow: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+}
+
+.page-numbers li a:hover {
+    background: #ccc;
+}
+
+.page-numbers li span.current {
+    background: #e44d26;
+    color: #fff;
+}
+
+.page-numbers .next,
+.page-numbers .prev {
+    background: #bbb;
+    color: #fff;
+}
+
+.page-numbers .next:hover,
+.page-numbers .prev:hover {
+    background: #aaa;
+}
+
+.clearfix::after {
+    content: "";
+    clear: both;
+    display: table;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .grid {
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+        gap: 10px;
+    }
+
+    .halim-post-title .entry-title {
+        font-size: 0.9rem;
+    }
+
+    .halim-post-title .original_title {
+        font-size: 0.7rem;
+    }
+
+    .halim-post-title-box {
+        padding: 8px;
+    }
+}
+
+@media (max-width: 576px) {
+    .grid {
+        grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+        gap: 8px;
+    }
+
+    .halim-post-title .entry-title {
+        font-size: 0.8rem;
+    }
+
+    .halim-post-title-box {
+        padding: 6px;
+    }
 }
 </style>
 <script>
-    document.addEventListener('DOMContentLoaded', function () {
-        const navItems = document.querySelectorAll('.nav-item');
+  document.addEventListener('DOMContentLoaded', function() {
+    const navItems = document.querySelectorAll('.nav-item');
 
-        navItems.forEach(item => {
-            item.addEventListener('click', function (e) {
-                e.preventDefault();
+    navItems.forEach(item => {
+      item.addEventListener('click', function(e) {
+        e.preventDefault();
 
-                // Loại bỏ lớp 'active' khỏi tất cả các mục
-                navItems.forEach(i => i.classList.remove('active'));
+        // Loại bỏ lớp 'active' khỏi tất cả các mục
+        navItems.forEach(i => i.classList.remove('active'));
 
-                // Thêm lớp 'active' vào mục được chọn
-                this.classList.add('active');
-            });
-        });
+        // Thêm lớp 'active' vào mục được chọn
+        this.classList.add('active');
+      });
     });
+  });
 </script>
 <section>
 
-    <nav class="container "id="container-contents">
-        <div class="container " style="background-color: #333 !important;">
-            <ul class="flex justify-around nav nav-pills nav-justified">
-                <li class="nav-item active">
-                    <a class="nav-link text-blue-500" href="#" title="">
-                        <span class="h-text">Mới<br>Cập Nhật</span>
-                    </a>
-                </li>
-                <li class="nav-item" data-id="thu-hai">
-                    <a class="nav-link" href="javascript:void(0);">
-                        <span class="font-semibold text-lg">Mon</span><br>Thứ Hai
-                    </a>
-                </li>
-                <li class="nav-item" data-id="thu-ba">
-                    <a class="nav-link" href="javascript:void(0);">
-                        <span class="font-semibold text-lg">Tue</span><br>Thứ Ba
-                    </a>
-                </li>
-                <li class="nav-item" data-id="thu-tu">
-                    <a class="nav-link" href="javascript:void(0);">
-                        <span class="font-semibold text-lg">Wed</span><br>Thứ Tư
-                    </a>
-                </li>
-                <li class="nav-item" data-id="thu-nam">
-                    <a class="nav-link" href="javascript:void(0);">
-                        <span class="font-semibold text-lg">Thu</span><br>Thứ Năm
-                    </a>
-                </li>
-                <li class="nav-item" data-id="thu-sau">
-                    <a class="nav-link" href="javascript:void(0);">
-                        <span class="font-semibold text-lg">Fri</span><br>Thứ Sáu
-                    </a>
-                </li>
-                <li class="nav-item" data-id="thu-bay">
-                    <a class="nav-link" href="javascript:void(0);">
-                        <span class="font-semibold text-lg">Sat</span><br>Thứ Bảy
-                    </a>
-                </li>
-                <li class="nav-item" data-id="chu-nhat">
-                    <a class="nav-link" href="javascript:void(0);">
-                        <span class="font-semibold text-lg">Sun</span><br>Chủ Nhật
-                    </a>
-                </li>
-            </ul>
-        </div>
-    </nav>
-{{--
-    <ul class="nav nav-pills nav-justified halim-schedule-block-mobile mt-3">
-        <li role="presentation" class="active" id="moviesLatest">
-            <a href="" title="">
-                <span class="h-text">Mới Cập Nhật</span>
-            </a>
-        </li>
-        <li role="presentation" id="pull">
-            <a href="javascript:;">Lịch Chiếu</a>
-        </li>
-    </ul>
-    <ul class="nav nav-pills nav-justified halim-schedule-block-mobile menu schedule">
-        <li role="presentation" data-id="thu-hai">
-            <a href="javascript:;">Thứ Hai</a>
-        </li>
-        <li role="presentation" data-id="thu-ba">
-            <a href="javascript:;">Thứ Ba</a>
-        </li>
-        <li role="presentation" data-id="thu-tu">
-            <a href="javascript:;">Thứ Tư</a>
-        </li>
-        <li role="presentation" data-id="thu-nam">
-            <a href="javascript:;">Thứ Năm</a>
-        </li>
-        <li role="presentation" data-id="thu-sau">
-            <a href="javascript:;">Thứ Sáu</a>
-        </li>
-        <li role="presentation" data-id="thu-bay">
-            <a href="javascript:;">Thứ Bảy</a>
-        </li>
-        <li role="presentation" data-id="chu-nhat">
-            <a href="javascript:;">Chủ Nhật</a>
-        </li>
-    </ul> --}}
-
-    <div class="container
+  <div class="container
     section-bar clearfix">
-        <h3 class="section-title">
-             <span>Mới cập nhật</span>
+    <h3 class="section-title">
+      <span>Mới cập nhật</span>
 
-        </h3>
-     </div>
-
-
-     <div class="container grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
-        <article class="thumb grid-item post-740">
-            <div class="halim-item">
-                <a class="halim-thumb" href="https://hoathinh3d.mom/the-gioi-hoan-my" title="Thế Giới Hoàn Mỹ">
-                    <figure>
-                        <img class="img-responsive"
-                            src="https://hoathinh3d.mom/wp-content/uploads/2021/04/the-gioi-hoan-my-7-300x450.jpg"
-                            alt="Thế Giới Hoàn Mỹ" title="Thế Giới Hoàn Mỹ">
-                    </figure>
-                    <span class="status">HD</span>
-                    <span class="episode"><span class="episode-label">Tập </span>207</span>
-                    <div class="icon_overlay"></div>
-                    <div class="halim-post-title-box">
-                        <div class="halim-post-title">
-                            <h2 class="entry-title">Thế Giới Hoàn Mỹ</h2>
-                            <p class="original_title">Perfect World</p>
-                        </div>
-                    </div>
-                </a>
-            </div>
-        </article>
-
-        <!-- Các bài viết khác cũng làm tương tự -->
-
-        <article class="thumb grid-item post-11734">
-            <div class="halim-item">
-                <a class="halim-thumb" href="https://hoathinh3d.mom/hoa-phung-lieu-nguyen"
-                    title="Hỏa Phụng Liêu Nguyên">
-                    <figure>
-                        <img class="img-responsive"
-                            src="https://hoathinh3d.mom/wp-content/uploads/2023/04/hoa-phung-lieu-nguyen-1-300x450.jpg"
-                            alt="Hỏa Phụng Liêu Nguyên" title="Hỏa Phụng Liêu Nguyên">
-                    </figure>
-                    <span class="status">HD</span>
-                    <span class="episode"><span class="episode-label">Tập </span>27</span>
-                    <div class="icon_overlay"></div>
-                    <div class="halim-post-title-box">
-                        <div class="halim-post-title">
-                            <h2 class="entry-title">Hỏa Phụng Liêu Nguyên</h2>
-                            <p class="original_title">Huo Feng Liao Yuan</p>
-                        </div>
-                    </div>
-                </a>
-            </div>
-        </article>
-
-        <article class="thumb grid-item post-1467">
-            <div class="halim-item">
-                <a class="halim-thumb" href="https://hoathinh3d.mom/van-co-than-thoai" title="Vạn Cổ Thần Thoại">
-                    <figure>
-                        <img class="img-responsive"
-                            src="https://hoathinh3d.mom/wp-content/uploads/2022/08/van-co-than-thoai-1-300x450.jpg"
-                            alt="Vạn Cổ Thần Thoại" title="Vạn Cổ Thần Thoại">
-                    </figure>
-                    <span class="status">HD</span>
-                    <span class="episode"><span class="episode-label">Tập </span>274</span>
-                    <div class="icon_overlay"></div>
-                    <div class="halim-post-title-box">
-                        <div class="halim-post-title">
-                            <h2 class="entry-title">Vạn Cổ Thần Thoại</h2>
-                            <p class="original_title">Wangu Shenhua</p>
-                        </div>
-                    </div>
-                </a>
-            </div>
-        </article>
-
-        <article class="thumb grid-item post-702375">
-            <div class="halim-item">
-                <a class="halim-thumb" href="https://hoathinh3d.mom/vinh-hang-kiem-to" title="Vĩnh Hằng Kiếm Tổ">
-                    <figure>
-                        <img class="img-responsive"
-                            src="https://hoathinh3d.mom/wp-content/uploads/2024/12/vinh-hang-kiem-to-1-300x450.jpg"
-                        alt="Vĩnh Hằng Kiếm Tổ" title="Vĩnh Hằng Kiếm Tổ">
-                </figure>
-                <span class="episode"><span class="episode-label">Tập </span>29</span>
-                <div class="icon_overlay"></div>
-                <div class="halim-post-title-box">
-                    <div class="halim-post-title">
-                        <h2 class="entry-title">Vĩnh Hằng Kiếm Tổ</h2>
-                        <p class="original_title">Rebirth of the Sword Patriarch</p>
-                    </div>
-                </div>
-            </a>
-        </div>
-    </article>
+    </h3>
+  </div>
 
 
-    <article class="thumb grid-item post-702375">
-        <div class="halim-item">
-            <a class="halim-thumb" href="https://hoathinh3d.mom/vinh-hang-kiem-to" title="Vĩnh Hằng Kiếm Tổ">
-                <figure>
-                    <img class="img-responsive"
-                        src="https://hoathinh3d.mom/wp-content/uploads/2024/12/vinh-hang-kiem-to-1-300x450.jpg"
-                    alt="Vĩnh Hằng Kiếm Tổ" title="Vĩnh Hằng Kiếm Tổ">
+  <div class="container grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
+  <article class="thumb grid-item post-740">
+    <div class="halim-item">
+        <a class="halim-thumb" href="https://hoathinh3d.mom/the-gioi-hoan-my" title="Thế Giới Hoàn Mỹ">
+            <figure>
+                <img class="img-responsive" src="{{ asset('images/the-gioi-hoan-my-newposter.jpg') }}" alt="Thế Giới Hoàn Mỹ"
+                     title="Thế Giới Hoàn Mỹ">
+                <span class="episode"><span class="episode-label">Tập </span>207</span>
             </figure>
-            <span class="episode"><span class="episode-label">Tập </span>29</span>
-            <div class="icon_overlay"></div>
             <div class="halim-post-title-box">
                 <div class="halim-post-title">
-                    <h2 class="entry-title">Vĩnh Hằng Kiếm Tổ</h2>
-                    <p class="original_title">Rebirth of the Sword Patriarch</p>
+                    <h2 class="entry-title">Thế Giới Hoàn Mỹ</h2>
+                    <p class="original_title">Perfect World</p>
                 </div>
             </div>
+            <div class="icon_overlay"></div>
         </a>
     </div>
 </article>
 
-</div>
-
-
-
-
-
-
-
-
+<article class="thumb grid-item post-11734">
+    <div class="halim-item">
+        <a class="halim-thumb" href="https://hoathinh3d.mom/hoa-phung-lieu-nguyen" title="Hỏa Phụng Liêu Nguyên">
+            <figure>
+                <img class="img-responsive" src="{{ asset('images/the-gioi-hoan-my-newposter.jpg') }}"
+                     alt="Hỏa Phụng Liêu Nguyên" title="Hỏa Phụng Liêu Nguyên">
+                <span class="episode"><span class="episode-label">Tập </span>27</span>
+            </figure>
+            <div class="halim-post-title-box">
+                <div class="halim-post-title">
+                    <h2 class="entry-title">Hỏa Phụng Liêu Nguyên</h2>
+                    <p class="original_title">Huo Feng Liao Yuan</p>
+                </div>
+            </div>
+            <div class="icon_overlay"></div>
+        </a>
     </div>
-    <div class="clearfix"></div>
-    <div class="text-center">
-        <ul class="page-numbers">
-            <li><span aria-current="page" class="page-numbers current">1</span></li>
-            <li><a class="page-numbers" href="https://hoathinh3d.mom/page/2">2</a></li>
-            <li><a class="page-numbers" href="https://hoathinh3d.mom/page/3">3</a></li>
-            <li><span class="page-numbers dots">…</span></li>
-            <li><a class="page-numbers" href="https://hoathinh3d.mom/page/16">16</a></li>
-            <li><a class="next page-numbers" href="https://hoathinh3d.mom/page/2"><i
-                        class="hl-down-open rotate-right"></i></a></li>
-        </ul>
+</article>
+
+
+<article class="thumb grid-item post-11734">
+    <div class="halim-item">
+        <a class="halim-thumb" href="https://hoathinh3d.mom/hoa-phung-lieu-nguyen" title="Hỏa Phụng Liêu Nguyên">
+            <figure>
+                <img class="img-responsive" src="{{ asset('images/the-gioi-hoan-my-newposter.jpg') }}"
+                     alt="Hỏa Phụng Liêu Nguyên" title="Hỏa Phụng Liêu Nguyên">
+                <span class="episode"><span class="episode-label">Tập </span>27</span>
+            </figure>
+            <div class="halim-post-title-box">
+                <div class="halim-post-title">
+                    <h2 class="entry-title">Hỏa Phụng Liêu Nguyên</h2>
+                    <p class="original_title">Huo Feng Liao Yuan</p>
+                </div>
+            </div>
+            <div class="icon_overlay"></div>
+        </a>
     </div>
+</article>
+<article class="thumb grid-item post-11734">
+    <div class="halim-item">
+        <a class="halim-thumb" href="https://hoathinh3d.mom/hoa-phung-lieu-nguyen" title="Hỏa Phụng Liêu Nguyên">
+            <figure>
+                <img class="img-responsive" src="{{ asset('images/the-gioi-hoan-my-newposter.jpg') }}"
+                     alt="Hỏa Phụng Liêu Nguyên" title="Hỏa Phụng Liêu Nguyên">
+                <span class="episode"><span class="episode-label">Tập </span>27</span>
+            </figure>
+            <div class="halim-post-title-box">
+                <div class="halim-post-title">
+                    <h2 class="entry-title">Hỏa Phụng Liêu Nguyên</h2>
+                    <p class="original_title">Huo Feng Liao Yuan</p>
+                </div>
+            </div>
+            <div class="icon_overlay"></div>
+        </a>
     </div>
+</article>
+
+
+
+<article class="thumb grid-item post-11734">
+    <div class="halim-item">
+        <a class="halim-thumb" href="https://hoathinh3d.mom/hoa-phung-lieu-nguyen" title="Hỏa Phụng Liêu Nguyên">
+            <figure>
+                <img class="img-responsive" src="{{ asset('images/the-gioi-hoan-my-newposter.jpg') }}"
+                     alt="Hỏa Phụng Liêu Nguyên" title="Hỏa Phụng Liêu Nguyên">
+                <span class="episode"><span class="episode-label">Tập </span>27</span>
+            </figure>
+            <div class="halim-post-title-box">
+                <div class="halim-post-title">
+                    <h2 class="entry-title">Hỏa Phụng Liêu Nguyên</h2>
+                    <p class="original_title">Huo Feng Liao Yuan</p>
+                </div>
+            </div>
+            <div class="icon_overlay"></div>
+        </a>
+    </div>
+</article>
+
+
+<article class="thumb grid-item post-11734">
+    <div class="halim-item">
+        <a class="halim-thumb" href="https://hoathinh3d.mom/hoa-phung-lieu-nguyen" title="Hỏa Phụng Liêu Nguyên">
+            <figure>
+                <img class="img-responsive" src="{{ asset('images/the-gioi-hoan-my-newposter.jpg') }}"
+                     alt="Hỏa Phụng Liêu Nguyên" title="Hỏa Phụng Liêu Nguyên">
+                <span class="episode"><span class="episode-label">Tập </span>27</span>
+            </figure>
+            <div class="halim-post-title-box">
+                <div class="halim-post-title">
+                    <h2 class="entry-title">Hỏa Phụng Liêu Nguyên</h2>
+                    <p class="original_title">Huo Feng Liao Yuan</p>
+                </div>
+            </div>
+            <div class="icon_overlay"></div>
+        </a>
+    </div>
+</article>
+
+  </div>
+
+
+
+
+
+
+
+
+  <div class="clearfix"></div>
+  <div class="text-center">
+    <ul class="page-numbers">
+      <li><span aria-current="page" class="page-numbers current">1</span></li>
+      <li><a class="page-numbers" href="https://hoathinh3d.mom/page/2">2</a></li>
+      <li><a class="page-numbers" href="https://hoathinh3d.mom/page/3">3</a></li>
+      <li><span class="page-numbers dots">…</span></li>
+      <li><a class="page-numbers" href="https://hoathinh3d.mom/page/16">16</a></li>
+      <li><a class="next page-numbers" href="https://hoathinh3d.mom/page/2"><i class="hl-down-open rotate-right"></i></a></li>
+    </ul>
+  </div>
+  </div> 
 
 </section>
-
-<style>
-    .episode {
-    position: relative; /* Để có thể định vị phần tử */
-    color: white; /* Màu chữ */
-    background-color: rgba(0, 0, 0, 0.5); /* Màu nền bán trong suốt */
-    padding: 5px 10px; /* Khoảng cách bên trong */
-    border-radius: 5px; /* Bo cong các góc */
-    top: 10px; /* Đưa lên một chút để không che ảnh */
-    left: 10px; /* Đưa vào bên trái một chút */
-}
-
-.grid-item .episode {
-    right: 2px;
-    bottom: 52px;
-    background: rgb(71, 132, 19);
-    color: #fff;
-    padding: 3px 5px 1px;
-    z-index: 9;
-    border-radius: 2px;
-    background-size: 200% 100%;
-    background-image: linear-gradient(to right, #C02425 0%, #F0CB35 51%, #C02425 100%);
-    transition: .7s;
-    text-transform: capitalize;
-}
-.grid-item .episode {
-    right: unset !important;
-    bottom: unset !important;
-    left: 0px !important;
-    top: 0px !important;
-}
-.page-numbers {
-            padding: 0;
-            margin: 20px 0;
-            color: #fff;
-            list-style: none;
-        }
-
-        .page-numbers li {
-            line-height: 35px;
-            display: inline-block; /* Hiển thị inline */
-        }
-
-        .page-numbers li a {
-            background: #1b364e;
-            transition: .5s all;
-            color: #feffff;
-            text-shadow: 0 1px 0 rgba(0, 0, 0, .5);
-            box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.07), 0px 1px 3px rgba(0, 0, 0, 0.29);
-            padding: 5px 10px; /* Thêm padding cho các liên kết */
-            border-radius: 5px; /* Bo cong cho các liên kết */
-        }
-
-        .page-numbers li a:hover {
-            background: #333; /* Màu nền khi hover */
-        }
-</style>

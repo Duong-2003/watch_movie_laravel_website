@@ -46,7 +46,7 @@ input#search {
 }
     #search-form-pc {
         max-width: 600px; /* Tăng chiều rộng tối đa */
-        margin: 20px auto; /* Thêm margin trên và dưới */
+      
         padding: 0 10px; /* Thêm padding ngang */
     }
 

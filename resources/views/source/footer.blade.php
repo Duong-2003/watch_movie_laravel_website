@@ -3,7 +3,7 @@
         <div class="row container">
             <div class="widget about col-xs-12 col-sm-4 col-md-4">
                 <div class="footer-logo">
-                    <img class="img-responsive" src="https://hoathinh3d.mom/wp-content/uploads/2023/04/logonewhh3d2023.png" alt="Hoạt Hình Trung Quốc - Xem Hoạt Hình 3D Hay | HH3D">
+                <img src="{{ asset('logonewhh3d2023.png') }}" alt="Hoạt Hình Trung Quốc - Xem Hoạt Hình 3D Hay | HH3D">
                     <span class="social">
                         <a href="https://www.facebook.com/hoathinh3dcom" target="_blank" rel="nofollow"><i class="hl-facebook"></i></a>
                     </span>
