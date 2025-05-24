@@ -46,3 +46,8 @@ Khi chạy lệnh này, Laravel sẽ áp dụng tất cả các migration chưa 
 
 
 
+cp .env.example .env
+gc .env
+type .env
+notepad .env
+code .env
